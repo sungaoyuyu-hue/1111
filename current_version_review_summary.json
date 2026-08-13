@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-13",
+  "project_root": "D:/work/exp6/BurstSFC2026_GPC_goal_20260812",
+  "source_zip": {
+    "path": "D:/xwechat_files/wxid_e7x1qrcwdex822_9d77/msg/file/2026-08/现在进度.zip",
+    "status": "unchanged",
+    "note": "The working copy was unpacked into the project directory; the original ZIP was not overwritten."
+  },
+  "gpc_target": {
+    "venue": "GPC 2026",
+    "official_scope_used": [
+      "workflow and service orchestration",
+      "heterogeneous resource management",
+      "runtime systems and distributed coordination"
+    ],
+    "format_constraints": {
+      "template": "Springer LNCS",
+      "max_pages_including_references": 16,
+      "current_pdf_pages": 15
+    },
+    "positioning_decision": "The paper is positioned as simulator-level burst-aware operational coupling for edge-cloud SFC orchestration; it does not claim information-theoretic privacy, distributed commit, or green/carbon optimization."
+  },
+  "current_version": {
+    "status": "round_02_candidate_with_open_blockers",
+    "title": "Limited-Visibility Burst-Aware SFC Orchestration in Edge--Cloud Networks",
+    "manuscript": "overleaf_burst_sfc_lNCS/works.tex",
+    "release_pdf": "overleaf_burst_sfc_lNCS/$out/BurstSFC2026.pdf",
+    "release_log": "overleaf_burst_sfc_lNCS/$out/BurstSFC2026.log",
+    "pdf_sha256": "809f54a94f50f843a30b5fe9add12f15ff8f00de8dd75748a3557c6e46652ca1",
+    "pdf_bytes": 466849,
+    "page_count": 15,
+    "latex_log_checks": {
+      "fatal_errors": 0,
+      "undefined_citations": 0,
+      "undefined_references": 0,
+      "overfull_boxes": 0,
+      "rerun_required": 0
+    }
+  },
+  "review_status": {
+    "stopping_rule": "Every reviewer in a five-reviewer round must score at least 9/10 and report no major blocker.",
+    "goal_status": "not_met",
+    "round_01": {
+      "status": "complete",
+      "baseline_pdf_sha256": "4fc97ffff2cb2a21f3d62730972ef3fecb13df6d4c86245090efb3e45878f18a",
+      "scores": {
+        "theory_formal_correctness": 4.0,
+        "experiments_statistics_reproducibility": 5.0,
+        "novelty_related_work_gpc": 4.0,
+        "gpc_fit_writing_pdf": 6.2,
+        "artifact_code_data_pdf_integrity": 2.5
+      },
+      "mean_score": 4.34,
+      "all_five_had_major_issues": true,
+      "summary": "review_cycles/round_01/summary.md"
+    },
+    "round_02": {
+      "status": "complete",
+      "reviewers_completed": 5,
+      "reviewers_required": 5,
+      "mean_score": 6.86,
+      "scores": {
+        "theory_formal_correctness": {
+          "score": 6.7,
+          "major_blocker": true,
+          "report": "review_cycles/round_02/reviewer_1_theory.md"
+        },
+        "experiments_statistics_reproducibility": {
+          "score": 7.5,
+          "major_blocker": true,
+          "report": "review_cycles/round_02/reviewer_2_experiments_statistics.md"
+        },
+        "novelty_related_work_gpc": {
+          "score": 4.0,
+          "major_blocker": true,
+          "report": "review_cycles/round_02/reviewer_3_novelty_gpc.md"
+        },
+        "gpc_fit_writing_pdf": {
+          "score": 8.1,
+          "major_blocker": false,
+          "report": "review_cycles/round_02/reviewer_4_writing_pdf.md"
+        },
+        "artifact_code_data_pdf_integrity": {
+          "score": 8.0,
+          "major_blocker": true,
+          "report": "review_cycles/round_02/reviewer_5_artifact.md"
+        }
+      },
+      "interpretation": "All five independent reviews are complete. The final round mean is below the 9/10 stopping target, and theory, experiments/statistics, novelty/GPC, and artifact reviews still report major blockers."
+    }
+  },
+  "changes_since_round_01": [
+    {
+      "area": "claims_and_positioning",
+      "status": "implemented",
+      "what_changed": "Replaced burst-resilient/privacy/green overclaims with a narrower simulator-supported burst-aware operational claim; clarified that the work uses limited visibility and does not provide information-theoretic privacy, distributed commit, or energy/carbon optimization.",
+      "evidence": ["overleaf_burst_sfc_lNCS/works.tex", "overleaf_burst_sfc_lNCS/evaluation.tex"]
+    },
+    {
+      "area": "executable_semantics_and_tokens",
+      "status": "partially_implemented",
+      "what_changed": "Added an explicit state-machine narrative, opaque token IDs, token-to-request/action/time/authorization binding, single-use consumption, cloud-stage authorization, final revalidation, non-rollback scale persistence, and negative fault responses.",
+      "remaining_issue": "The policy API still exposes the full mutable Environment and FlowSpec/TraceFlowSpec, so causal/filtration constraints are not enforced by the interface; the standalone token API also accepts fraction < 1 and can represent an incomplete allocation.",
+      "evidence": ["sfc_autoresearch/environment.py", "sfc_autoresearch/train.py", "overleaf_burst_sfc_lNCS/works.tex"]
+    },
+    {
+      "area": "causal_trace_protocol",
+      "status": "implemented_with_scope_caveat",
+      "what_changed": "Removed future-peak access from threshold logic, introduced causal random_busy handling, and separated measured traces from declared causal traces.",
+      "remaining_issue": "The policy-facing API must still be refactored so the causal restriction is mechanically enforced rather than only documented.",
+      "evidence": ["sfc_autoresearch/ccfb_data.py", "sfc_autoresearch/trace_protocol.py", "overleaf_burst_sfc_lNCS/evaluation.tex"]
+    },
+    {
+      "area": "action_universe_and_training",
+      "status": "implemented_in_training_path",
+      "what_changed": "Aligned split actions with the training action universe, removed duplicate actions per event, corrected Q-count reporting, and removed future burst-time access from training decisions.",
+      "evidence": ["sfc_autoresearch/train.py", "sfc_autoresearch/test_large_scale_regression.py"]
+    },
+    {
+      "area": "objective_and_failure_accounting",
+      "status": "open",
+      "what_changed": "The manuscript now reports external failure audits and empirical design desiderata rather than the previously unimplemented weighted optimization objective.",
+      "remaining_issue": "The development objective is computed before the external failure audit and therefore is not yet fully aligned with the switch_failure metric; Eq. 12 must be recomputed after the audit or removed.",
+      "evidence": ["overleaf_burst_sfc_lNCS/evaluation.tex", "sfc_autoresearch/experiment_results"]
+    },
+    {
+      "area": "statistical_and_experimental_evidence",
+      "status": "substantially_implemented",
+      "what_changed": "Rebuilt canonical experiments and added seed-cluster reporting, crossed bootstrap learning comparisons, full factorial confirmation, causal/measured trace partitions, topology normal/stress runs, scale/failure runs, and explicit artifact provenance.",
+      "evidence": {
+        "canonical_main_rows": 180,
+        "ablation_rows": 180,
+        "learning_rows": 900,
+        "factorial_rows": 4320,
+        "topology_normal_rows": 630,
+        "topology_stress_rows": 324,
+        "sndlib_current_rows": 320,
+        "paper_section": "overleaf_burst_sfc_lNCS/evaluation.tex"
+      }
+    },
+    {
+      "area": "topology_zoo_and_regression",
+      "status": "implemented",
+      "what_changed": "Fixed the Topology Zoo authorization-domain handling, rebuilt normal and stress outputs from current code, and added regression coverage.",
+      "evidence": ["sfc_autoresearch/ccfb_extension.py", "sfc_autoresearch/test_large_scale_regression.py", "sfc_autoresearch/experiment_results/ccfb_extension/topology_rebuild_evidence.md"]
+    },
+    {
+      "area": "novelty_and_related_work",
+      "status": "partially_implemented",
+      "what_changed": "Added a closest-work design-space table and narrowed the novelty statement to operational coupling among limited visibility, burst admission, tokenized feasibility, and edge-cloud stage authorization.",
+      "remaining_issue": "The PPDM row currently leaves the binary-response column as '--' even though the cited work uses binary response; the table needs a source-faithful correction and explicit mapping notes. Baseline names must also be labeled as common-simulator ports, not external implementations.",
+      "evidence": ["overleaf_burst_sfc_lNCS/works.tex", "review_cycles/round_02/reviewer_3_novelty_gpc.md"]
+    },
+    {
+      "area": "manuscript_and_pdf",
+      "status": "implemented_but_needs_fresh_review",
+      "what_changed": "Rewrote the abstract/problem/algorithm/conclusion, replaced the evaluation synthesis, built a 15-page LNCS PDF, and performed visual/font/reference checks.",
+      "evidence": ["overleaf_burst_sfc_lNCS/works.tex", "overleaf_burst_sfc_lNCS/evaluation.tex", "tmp/final_visual_qa.md", "tmp/visual_final/contact_sheet.png"]
+    },
+    {
+      "area": "artifact_provenance_and_release_gate",
+      "status": "current_root_gate_passes_but_path_cleanup_open",
+      "what_changed": "Created a frozen release manifest, locked PDF/log hashes, added manuscript-value synchronization, and ran canonical freeze/verify plus artifact tests.",
+      "evidence": {
+        "release_manifest": "experiment_results/canonical_gpc/release_manifest.json",
+        "current_root_integrity_report": "experiment_results/canonical_gpc/integrity_report.json",
+        "current_root_integrity_passed": true,
+        "artifact_integrity_tests": "22/22 passed",
+        "large_scale_regression_tests": "20/20 passed",
+        "statistical_provenance_tests": "12/12 passed",
+        "paper_value_sync": "passed"
+      },
+      "remaining_issue": "A stale legacy report remains at sfc_autoresearch/experiment_results/canonical_gpc/integrity_report.json and records an older trace/PDF. It must be regenerated, renamed as legacy, or removed from the release path before the artifact claim is unambiguous."
+    }
+  ],
+  "current_experimental_snapshot": {
+    "topology_zoo_normal": {
+      "rows": 630,
+      "summary_rows": 72,
+      "proposed_sla_violation": 0.0,
+      "proposed_acceptance": 1.0,
+      "proposed_utility_violation": 0.0,
+      "proposed_overload": 0
+    },
+    "topology_zoo_stress": {
+      "rows": 324,
+      "summary_rows": 72,
+      "proposed_sla_violation": 0.10702329702490361,
+      "proposed_acceptance": 0.9787808641975309,
+      "proposed_utility_violation": 0.09609898589065256,
+      "proposed_overload": 0,
+      "interpretation": "Stress results show a threshold boundary, not universal robustness."
+    },
+    "factorial_confirmation": {
+      "raw_rows": 4320,
+      "summary_rows": 144,
+      "hard_constraint_columns_zero": true,
+      "recovered_permission_errors": 2
+    }
+  },
+  "remaining_blockers_before_next_review_round": [
+    "Hide future trace and full mutable environment state behind a restricted policy observation/action facade.",
+    "Reject or privatize any partial allocation path so the public action universe is complete and unit-sum.",
+    "Recompute the development objective after the external failure audit or remove the inconsistent Eq. 12 claim.",
+    "Correct the PPDM binary-response entry and add source-level mapping notes in the closest-work table.",
+    "Regenerate or clearly quarantine the stale local integrity report.",
+    "Complete the fifth-reviewer round with fresh GPC writing/PDF and artifact reviewers; only then use a round-level score.",
+    "Do not declare the GPC 9/10 stopping rule satisfied while any major blocker or missing reviewer remains."
+  ]
+}
